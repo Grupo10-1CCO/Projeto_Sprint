@@ -1,0 +1,265 @@
+/* FONTES */
+@font-face {
+    font-family: OswaldRegular;
+    src: url(../Site/fonts/Oswald-Regular.ttf);
+}
+
+@font-face {
+    font-family: NunitoRegular;
+    src: url(../Site/fonts/Nunito-Regular.ttf);
+}
+/* FONTES */
+/* ====================================================== */
+/* BODY */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+}
+
+body::-webkit-scrollbar {
+    width: 1vw;               
+  }
+  
+body::-webkit-scrollbar-track {
+    background: #000000;        
+}
+  
+body::-webkit-scrollbar-thumb {
+    background-color: #4CFA91;         
+    border: 3px solid #000000;  
+}
+/* BODY */
+/* ====================================================== */
+/* HEADER */
+.header {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.header_logo {
+    height: 7vh;
+    width: 40vw;
+}
+
+.header_img {
+    height: 7vh;
+}
+
+.header_box {
+    height: 7vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#header_cadastro {
+    display: flex;
+    align-items: center;
+    height: 7vh;
+    margin-left: 10vw;
+    font-family: OswaldRegular;
+    font-size: 3vh;
+    background-color: #FFFFFF;
+    color: #4CFA91;
+    border: 0;
+    cursor: pointer;
+}
+
+#header_login {
+    display: flex;
+    align-items: center;
+    height: 7vh;
+    margin-left: 10vw;
+    font-family: OswaldRegular;
+    font-size: 3vh;
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 0;
+    cursor: pointer;
+}
+/* HEADER */
+/* ====================================================== */
+/* LINHA */
+.linha {
+    height: 0.5vh;
+    width: 100%;
+    background-color: #4CFA91;
+}
+/* LINHA */
+/* ====================================================== */
+/* CADASTRO */
+.cadastro {
+    height: 85vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    margin-left: 10vw;
+}   
+
+.cadastro_left {
+    height: 85vh;
+    width: 70vw;
+}
+
+.cadastro_left_img {
+    margin-top: 15vh;
+    width: 40vw;
+}
+
+.cadastro_right {
+    height: 85vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vh;
+    background-color: #4CFA91;
+    border-radius: 6vh;
+    border: solid 1px #000000;
+}
+
+.cadastro_right_titulo {
+    height: 10vh;
+    font-family: OswaldRegular;
+    font-size: 5vh; 
+}
+
+.cadastro_right_texto {
+    height: 2vh;
+    width: 20vw;
+    font-family: NunitoRegular;
+    font-size: 2vh;
+    font-weight: 600;  
+    border-radius: 2vh;
+    margin-bottom: 1vh;
+}
+
+.cadastro_right_input {
+    height: 5vh;
+    width: 20vw;
+    font-family: NunitoRegular;
+    font-size: 2vh;
+    border-radius: 2vh;
+    border: 1px solid #000000;
+    margin-bottom: 3vh;
+}
+
+.cadastro_right_frase {
+    height: 2vh;
+    width: 20vw;
+    display: flex;
+    justify-content: center;
+    font-family: NunitoRegular;
+    font-size: 2vh;
+    font-weight: 600;  
+    margin-bottom: 1vh;
+    cursor: pointer;
+}
+
+.cadastro_right_botao {
+    height: 5vh;
+    width: 10vw;
+    font-family: NunitoRegular;
+    font-size: 2vh;
+    font-weight: 600; 
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 2vh;
+    margin-top: 4vh;
+    cursor: pointer;
+}
+/* CADASTRO */
+/* ====================================================== */
+/* LOGIN */
+.login {
+    height: 85vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    margin-left: 10vw;
+}   
+
+.login_left {
+    height: 85vh;
+    width: 70vw;
+}
+
+.login_left_img {
+    margin-top: 15vh;
+    width: 40vw;
+}
+
+.login_right {
+    height: 85vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vh;
+    background-color: #4CFA91;
+    border-radius: 6vh;
+    border: solid 1px #000000;
+}
+
+.login_right_titulo {
+    height: 10vh;
+    font-family: OswaldRegular;
+    font-size: 5vh; 
+}
+
+.login_right_texto {
+    height: 2vh;
+    width: 20vw;
+    font-family: NunitoRegular;
+    font-size: 2vh;
+    font-weight: 600;  
+    border-radius: 2vh;
+    margin-bottom: 1vh;
+}
+
+.login_right_input {
+    height: 5vh;
+    width: 20vw;
+    font-family: NunitoRegular;
+    font-size: 2vh;
+    border-radius: 2vh;
+    border: 1px solid #000000;
+    margin-bottom: 5vh;
+}
+
+.login_right_frase {
+    height: 2vh;
+    width: 20vw;
+    display: flex;
+    justify-content: center;
+    font-family: NunitoRegular;
+    font-size: 2vh;
+    font-weight: 600;  
+    border-radius: 2vh;
+    margin-bottom: 3vh;
+    cursor: pointer;
+}
+
+.login_right_botao {
+    height: 5vh;
+    width: 10vw;
+    font-family: NunitoRegular;
+    font-size: 2vh;
+    font-weight: 600; 
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 2vh;
+    margin-top: 4vh;
+    cursor: pointer;
+}
