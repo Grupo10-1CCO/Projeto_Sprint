@@ -16,7 +16,6 @@ create table usuario(
   senha varchar(45),
   nomeUsuario varchar(60),
   email varchar(60) unique,
-  cpf char(11),
   funcao char(1),
   fkEmpresa char(18),
   foreign key(fkEmpresa) references empresa(cnpj)
