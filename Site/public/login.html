@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styleLogin.css">
+    <link rel="icon" type="image/x-icon" href="assets/LogoSimbolo.png">
+    <!-- <script src="./js/funcoes.js"></script> -->
+    <title>SAMP</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="header_logo">
+            <a href="index.html"> <img class="header_img" src="assets/Logo.png" alt="SAMP"> </a>
+        </div>
+
+        <div class="header_box">
+            <button onclick="botao_cadastro()" id="header_cadastro"> CADASTRO </button>
+            <button onclick="botao_login()" id="header_login"> LOGIN </button>
+        </div>
+    </div>
+
+    <div class="linha"></div>
+    <span id="mensagem_erro" class="ms"></span>
+
+    <div id="cadastro_mostrar" style="display: block;">
+        <div class="cadastro">
+            <div class="cadastro_left">
+                <img class="cadastro_left_img" src="assets/Cadastro_Login.png" alt="Cadastro">
+            </div>
+            <div class="cadastro_right">
+                <span class="cadastro_right_titulo">CADASTRE-SE</span>
+                <span class="cadastro_right_texto">Nome</span>
+                <input id="nome_input" class="cadastro_right_input" type="text">
+                <span class="cadastro_right_texto">CNPJ</span>
+                <input id="cnpj_input" class="cadastro_right_input" type="text">
+                <span class="cadastro_right_texto">E-mail</span>
+                <input id="email_cad_input" class="cadastro_right_input" type="text">
+                <span class="cadastro_right_texto">Senha</span>
+                <input id="senha_cad_input" class="cadastro_right_input" type="password">
+                <span class="cadastro_right_texto">Confirme a senha</span>
+                <input id="conf_senha_input" class="cadastro_right_input" type="password">
+                <span onclick="botao_login()" class="cadastro_right_frase">Já tem cadastro? Faça login</span>
+                <button onclick="cadastrar()" class="cadastro_right_botao">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="login_mostrar" style="display: none;">
+        <div class="login">
+            <div class="login_left">
+                <img class="login_left_img" src="assets/Cadastro_Login.png" alt="Cadastro">
+            </div>
+            <div class="login_right">
+                <span class="login_right_titulo">ENTRE</span>
+                <span class="login_right_texto">E-mail</span>
+                <input id="email_log_input" class="login_right_input" type="text">
+                <span class="login_right_texto">Senha</span>
+                <input id="senha_log_input" class="login_right_input" type="password">
+                <span onclick="botao_cadastro()" class="login_right_frase">Ainda não se cadastrou? Cadastre-se</span>
+                <span class="login_right_frase">Esqueci minha senha</span>
+                <button onclick="entrar()" class="login_right_botao">Entrar</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    function entrar() {
+
+        var emailVar = email_log_input.value;
+        var senhaVar = senha_log_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            mensagem_erro.classList.add("alerta")
+            mensagem_erro.style.display = "flex";
+            mensagem_erro.innerHTML = "Por favor não deixe nenhum campo em branco";
+            setTimeout(() => {
+                mensagem_erro.style.display = "none";
+                mensagem_erro.classList.remove("alerta");
+                mensagem_erro.innerHTML = "";
+            }, "5000")
+            return false
+
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                mensagem_erro.classList.add("ok")
+                mensagem_erro.style.display = "flex";
+                mensagem_erro.innerHTML = "Login realizado, redirecionando para a dashboard";
+
+                resposta.json().then(json => {
+
+
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "dashboard/cards.html";
+                    }, 4000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    mensagem_erro.classList.add("erro")
+                    mensagem_erro.style.display = "flex";
+                    mensagem_erro.innerHTML = texto;
+                    setTimeout(() => {
+                        mensagem_erro.style.display = "none";
+                        mensagem_erro.classList.remove("alerta");
+                        mensagem_erro.innerHTML = "";
+                    }, "5000")
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+
+    function cadastrar() {
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome_input.value;
+        var emailVar = email_cad_input.value;
+        var senhaVar = senha_cad_input.value;
+        var cnpjVar = cnpj_input.value;
+        var confirmacaoSenhaVar = conf_senha_input.value;
+
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            mensagem_erro.classList.add("alerta")
+            mensagem_erro.style.display = "flex";
+            mensagem_erro.innerHTML = "Por favor não deixe nenhum campo em branco";
+            setTimeout(() => {
+                mensagem_erro.style.display = "none";
+                mensagem_erro.classList.remove("alerta");
+                mensagem_erro.innerHTML = "";
+            }, "5000")
+
+            return false;
+        }
+        else if (confirmacaoSenhaVar != senhaVar) {
+            mensagem_erro.classList.add("erro")
+            mensagem_erro.style.display = "flex";
+            mensagem_erro.innerHTML = "Senhas não coincidem";
+            setTimeout(() => {
+                mensagem_erro.style.display = "none";
+                mensagem_erro.classList.remove("erro");
+                mensagem_erro.innerHTML = "";
+            }, "5000")
+
+            return false;
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                cnpjServer: cnpjVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                mensagem_erro.classList.add("ok");
+                mensagem_erro.style.display = "flex";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
+
+                nome_input.value = "";
+                email_cad_input.value = "";
+                senha_cad_input.value = "";
+                cnpj_input.value = "";
+                conf_senha_input.value = "";
+
+                setTimeout(() => {
+                    mensagem_erro.style.display = "none";
+                    mensagem_erro.classList.remove("ok");
+                    mensagem_erro.innerHTML = "";
+                    botao_login();
+                }, "5000")
+
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+    }
+</script>
+
+<script>
+
+    function botao_cadastro() {
+        cadastro_mostrar.style.display = 'block';
+        login_mostrar.style.display = 'none';
+        header_cadastro.style.color = '#4CFA91';
+        header_login.style.color = '#000000';
+    }
+
+    function botao_login() {
+        cadastro_mostrar.style.display = 'none';
+        login_mostrar.style.display = 'block';
+        header_cadastro.style.color = '#000000';
+        header_login.style.color = '#4CFA91';
+    }
+
+</script>
