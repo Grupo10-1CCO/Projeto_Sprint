@@ -25,7 +25,7 @@ CREATE TABLE tbUsuario
 
 CREATE TABLE tbMaquina
     (
-    idMaquina int primary auto_increment,
+    serialNumber int primary key,
     fkEmpresa int,
     nome varchar(100),
     so varchar(100),
