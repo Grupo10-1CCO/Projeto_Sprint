@@ -4,10 +4,9 @@ USE SAMP;
 
 CREATE TABLE tbEmpresa
     (
-    idEmpresa int primary key auto_increment,
+    cnpj char(14) primary key,
     nome varchar(100),
-    email varchar(100),
-    cnpj char(14)
+    email varchar(100)
     )
 ;
 
