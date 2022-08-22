@@ -25,7 +25,7 @@ CREATE TABLE tbUsuario
 
 CREATE TABLE tbMaquina
     (
-    serialNumber int primary key,
+    serialNumber char(12) primary key,
     fkEmpresa int,
     nome varchar(100),
     so varchar(100),
@@ -45,13 +45,13 @@ CREATE TABLE tbMaquina
 CREATE TABLE tbRegistro
     (
     idRegistro int primary key auto_increment,
-    fkMaquina int,
+    fkMaquina char(12),
     uso_cpu varchar(100),
     temp_cpu varchar(100),
     freq_cpu varchar(100),
     uso_memoria varchar(100),
     uso_disco varchar(100),
     data_hora_regis datetime,
-    foreign key(fkMaquina) references tbMaquina(idMaquina)
+    foreign key(fkMaquina) references tbMaquina(serialNumber)
     )
 ;
