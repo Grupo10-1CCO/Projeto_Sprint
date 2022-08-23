@@ -52,6 +52,19 @@ INSERT INTO maquina(sistema, processador, ramTotal) values ('{sistema}','{proces
 
 INSERT INTO usuario VALUES (NULL, '{nome}', '{user}', MD5('2234'));
 
+----------------------------
+
+select usoCpu, frequenciaCpu, usoMemoria, usoDisco, dataHoraRegistro from dados order by idDados desc limit 5;
+
+insert into dados values (null, 'BRJ153989738', 30, 40, null, null, '2022-08-22 01:51:48.131296');
+
+insert into dados values (null, 'BRJ839784635', 30, 50, null, 1600.00, null, '2022-08-22 01:51:48.131296');
+insert into dados values (null, 'BRJ839784635', 40, 90, null, 2600.00, null, '2022-08-22 02:51:48.131296');
+insert into dados values (null, 'BRJ839784635', 35, 100, null, 1600.00, null, '2022-08-22 03:51:48.131296');
+insert into dados values (null, 'BRJ839784635', 70, 40, null, 2600.00, null, '2022-08-22 04:51:48.131296');
+insert into dados values (null, 'BRJ839784635', 80, 30, null, 3600.00, null, '2022-08-22 05:51:48.131296');
+insert into dados values (null, 'BRJ839784635', 90, 10, null, 3600.00, null, '2022-08-22 06:51:48.131296');
+
 
 
 

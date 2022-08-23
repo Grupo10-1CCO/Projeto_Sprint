@@ -36,3 +36,4 @@ def select(query, isAllRequested = False):
             cursor.close()
             cnx.close()
             return dados
+

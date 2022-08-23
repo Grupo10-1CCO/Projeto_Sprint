@@ -98,7 +98,7 @@ def monitorar():
 def info():
     os.system(codeCleaner)
     
-    freqCpu = f'{cpu_freq().max / 100}Ghz'
+    freqCpu = f'{cpu_freq().current}Mhz'
     qtdCores = cpu_count()
     qtdThreads = cpu_count(logical=False)
     tempoGasto = f"{round(cpu_times().user / 60 / 60, 2)} Horas"
@@ -145,14 +145,14 @@ def info():
         
 def insertPeriodico(serialNumber):
     while True:
-            usoAtualMemoria = conversao_bytes(virtual_memory().used, 3)
+            usoAtualMemoria = virtual_memory().percent
             usoCpuPorc = cpu_percent()
             freqCpu = cpu_freq().current / 100
             disco = disk_partitions()[0][0]
             usoDisco = disk_usage(disco).percent
             dataHora = datetime.datetime.now()
             
-            query = f"INSERT INTO dados VALUES(NULL, {serialNumber}, {usoAtualMemoria}, {usoCpuPorc}, NULL, {freqCpu}, {usoDisco}, '{dataHora}')"
+            query = f"INSERT INTO dados VALUES(NULL, '{serialNumber}', {usoAtualMemoria}, {usoCpuPorc}, NULL, {freqCpu}, {usoDisco}, '{dataHora}');"
 
             insert(query)
 
