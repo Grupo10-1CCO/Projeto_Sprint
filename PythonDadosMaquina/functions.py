@@ -114,13 +114,6 @@ def info():
 
     macString = ':'.join(("%012X" % mac) [i:i+2] for i in range(0,12,2))
 
-    # if sistema == "Windows":
-    #    serialNumber = subprocess.check_output('wmic bios get serialnumber').decode("utf-8")
-    # elif sistema == "Linux":
-    #    serialNumber = subprocess.check_output('').decode("utf-8")
-
-
-
 
     versaoSistemas = platform.version()
     memoriaTotal = f'{conversao_bytes(virtual_memory().total, 3)}GB'
@@ -147,7 +140,7 @@ def insertPeriodico(serialNumber):
     while True:
             usoAtualMemoria = virtual_memory().percent
             usoCpuPorc = cpu_percent()
-            freqCpu = cpu_freq().current / 100
+            freqCpu = round(cpu_freq().current, 2)
             disco = disk_partitions()[0][0]
             usoDisco = disk_usage(disco).percent
             dataHora = datetime.datetime.now()
@@ -156,4 +149,4 @@ def insertPeriodico(serialNumber):
 
             insert(query)
 
-            time.sleep(10)
+            time.sleep(20)
