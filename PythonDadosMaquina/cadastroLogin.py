@@ -19,18 +19,14 @@ def login():
     
     dados = select(query)
 
-    if type(dados) == type(None):
-        print("\033[1mFalha no Login\033[0m\n\nUsuário ou senha inválidos")
-        time.sleep(2)
-        login()
-    else:
-        os.system(codeCleaner)
-        print("\033[1mSucesso no Login\033[0m\n\nLogin feito com sucesso\nAbrindo menu inicial...\n")
-        userId = dados[0]
-        nomeUser = dados[1]
-        serialNumber = dados[2]
-        time.sleep(2)
-        return userId, nomeUser, serialNumber
+    
+    os.system(codeCleaner)
+    print("\033[1mSucesso no Login\033[0m\n\nLogin feito com sucesso\nAbrindo menu inicial...\n")
+    userId = dados[0]
+    nomeUser = dados[1]
+    serialNumber = dados[2]
+    time.sleep(2)
+    return userId, nomeUser, serialNumber
 
 
 

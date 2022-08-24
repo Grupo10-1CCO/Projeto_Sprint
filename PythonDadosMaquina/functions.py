@@ -7,6 +7,7 @@ from database import insert, select
 import cpuinfo
 from uuid import getnode as get_mac
 from random import randint
+from datetime import datetime
 
 
 sistema = platform.system()
@@ -150,3 +151,69 @@ def insertPeriodico(serialNumber):
             insert(query)
 
             time.sleep(20)
+
+
+
+def relatorio():
+    os.system(codeCleaner)
+
+    hora = datetime.now()
+    with open('DadosMaquina.txt','w', encoding='utf-8') as arquivo:
+        arquivo.write("Data e hora do momento que foi salvo os dados:\n" + str(hora))
+
+
+    versaoSistemas = platform.version()
+    arquitetura = cpuinfo.get_cpu_info()['arch']
+    if arquitetura == "X86_32":
+        arquitetura = "32 bits"
+    elif arquitetura == "X86_64":
+        arquitetura = "64 bits"
+
+        mac = get_mac()
+    macString = ':'.join(("%012X" % mac) [i:i+2] for i in range(0,12,2))
+    tempoGasto = f"{round(cpu_times().user / 60 / 60, 2)} Horas"
+    processador = cpuinfo.get_cpu_info()['brand_raw']
+    with open('DadosMaquina.txt','a', encoding='utf-8') as arquivo:
+        arquivo.write("\n\n━━━━━ Informações do computador ━━━━━\n\nSistema operacional: {}\nVersão do sistema: {}\nMac Address: {}\nArquiterura: {}\nProcessador: {}\nTempo gasto do computador desde a última vez em que foi ligado: {}\n".format(sistema, versaoSistemas, macString, arquitetura, processador, tempoGasto))
+
+
+    memoriaTotal = f'{conversao_bytes(virtual_memory().total, 3)}GB'
+    memoriaDisponivel = f'{conversao_bytes(virtual_memory().available, 3)}GB'
+    usoAtualMemoria = f'{conversao_bytes(virtual_memory().used, 3)}GB'
+    memoriaEmUsoPerc = virtual_memory().percent
+    with open('DadosMaquina.txt','a', encoding='utf-8') as arquivo:
+        arquivo.write("\n━━━━━ MEMÓRIA RAM ━━━━━\n\nMemória total: {} \nMemória disponivel: {} \nUso atual: {} \nPorcentagem de uso: {}%\n".format(memoriaTotal, memoriaDisponivel, usoAtualMemoria, memoriaEmUsoPerc))
+    
+
+    usoCpuPorc = f'{cpu_percent()}%'
+    usoPorCore = cpu_percent(percpu=True)
+    freqCpu = round(cpu_freq().current, 2)
+    qtdCores = cpu_count()
+    qtdThreads = cpu_count(logical=False)
+    with open('DadosMaquina.txt','a', encoding='utf-8') as arquivo:
+        arquivo.write("\n━━━━━ CPU ━━━━━\n\nUso total: {}\nFrequência da CPU: {}Mhz\nQuantidade de núcleos: {}\nQuantidade de Threads: {}\nUso por core: {}\n".format(usoCpuPorc, freqCpu, qtdCores, qtdThreads, usoPorCore))
+    
+
+    particoes = []
+    if sistema == "Windows":
+        for part in disk_partitions(all=False): # identificando partições
+            if part[0] == "F:\\":
+                break
+            elif part[0] == "E:\\":
+                break
+            else:
+                particoes.append(part[0])
+    elif sistema == "Linux":
+        particoes.append("/")
+
+
+    porcentagemOcupados = [] 
+    for j in particoes:
+        porcentagemOcupados.append(disk_usage(j).percent) 
+    with open('DadosMaquina.txt','a', encoding='utf-8') as arquivo:
+        arquivo.write("\n━━━━━ Disco ━━━━━\n\nPartições: {} \nPorcentagem ocupada de cada partição: {}\n".format(particoes, porcentagemOcupados))
+
+
+    print('Sucesso!!\nSeus dados foram salvos em um relatório chamado DadosMaquina.txt\n')
+    input("\nPressione Enter para voltar ao menu...\n")
+    return 0 

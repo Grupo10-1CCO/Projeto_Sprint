@@ -1,4 +1,4 @@
-from functions import conversao_bytes, monitorar, info
+from functions import conversao_bytes, monitorar, info, relatorio
 from psutil import * 
 import time
 import os
@@ -15,7 +15,7 @@ def menu(userId, nome, serialNumber):
 
     os.system(codeCleaner)
 
-    opcaoUser = input(f"\033[1mHardware Monitor\033[0m\n\n Bem vindo(a) {nome} !!\n\n[1] - Monitorar processos atuais da máquina \n[2] - Verificar Informações sobre o dispositivo\n[3] - Análise de dados\n[4] - Sair\n\n\033[1mUsuário:\033[0m ")
+    opcaoUser = input(f"\033[1mHardware Monitor\033[0m\n\n Bem vindo(a) {nome}!!\n\n[1] - Monitorar processos atuais da máquina \n[2] - Verificar Informações sobre o dispositivo\n[3] - Análise de dados\n[4] - Documentar meus dados\n[5] - Sair\n\n\033[1mUsuário:\033[0m ")
 
 
     while opcaoUser == "1":
@@ -70,6 +70,8 @@ def menu(userId, nome, serialNumber):
 
             
     while opcaoUser == "4":
+        opcaoUser = relatorio()
+    while opcaoUser == "5":
         main()
         exit()
     while opcaoUser != 1 and opcaoUser != 2 and opcaoUser != 3 and opcaoUser != 4:
