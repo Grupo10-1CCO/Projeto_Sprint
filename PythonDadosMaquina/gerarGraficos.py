@@ -50,12 +50,14 @@ def gerarGraficoCpu(userId):
     for linha in select(query,True):
         usoCpuPorc.append(linha[0])
         freqCpu.append(linha[1])
-        data_format = linha[2].strftime("%d"'/'"%m"'\n'"%H"':'"%m"':'"%S")
+        data_format = linha[2].strftime('%d/%m \n %H:%M:%S')
         dataHoraRegis.append(data_format)
+    
+    dataHoraFormatado = dataHoraRegis[::-1]
 
     figura = plt.figure(figsize=(10,3))
     facecolor='blue'
-    plt.plot(dataHoraRegis, usoCpuPorc)
+    plt.plot(dataHoraFormatado, usoCpuPorc)
     plt.title ('Uso da CPU (%)')
     plt.show()
 
@@ -71,12 +73,14 @@ def gerarGraficoCpu2(userId):
     for linha in select(query,True):
         usoCpuPorc.append(linha[0])
         freqCpu.append(linha[1])
-        data_format = linha[2].strftime("%d"'/'"%m"'\n'"%H"':'"%m"':'"%S")
+        data_format = linha[2].strftime('%d/%m \n %H:%M:%S')
         dataHoraRegis.append(data_format)
+
+    dataHoraFormatado = dataHoraRegis[::-1]
 
     figura = plt.figure(figsize=(10,3))
     facecolor='blue'
-    plt.plot(dataHoraRegis, freqCpu)
+    plt.plot(dataHoraFormatado, freqCpu)
     plt.title ('Frequência da CPU (Mhz)')
     plt.show()
     time.sleep(3)
@@ -91,14 +95,13 @@ def gerarGraficoMemoria(userId):
 
     for linha in select(query,True):
         usoMemoria.append(linha[0])
-        data_format = linha[1].strftime("%d"'/'"%m"'\n'"%H"':'"%m"':'"%S")
+        data_format = linha[1].strftime('%d/%m \n %H:%M:%S')
         dataHoraRegis.append(data_format)
+
+    dataHoraFormatado = dataHoraRegis[::-1]
 
     figura = plt.figure(figsize=(10,3))
     facecolor='blue'
     plt.plot(dataHoraRegis, usoMemoria)
     plt.title ('Uso da Memória RAM (%)')
     plt.show()
-
-
-

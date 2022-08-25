@@ -44,36 +44,10 @@ select * from maquina;
 select * from Usuario;
 select * from dados;
 
-insert into dados(dataHoraRegistro) values('2022-08-22 01:51:48.131296');
-
-SELECT idUsuario FROM usuario where nome = 'trt' and senha = MD5('123');
-
-INSERT INTO maquina(sistema, processador, ramTotal) values ('{sistema}','{processador}', '{memoriaTotal}');
-
-INSERT INTO usuario VALUES (NULL, '{nome}', '{user}', MD5('2234'));
-
 ----------------------------
 
-select usoCpu, frequenciaCpu, usoMemoria, usoDisco, dataHoraRegistro from dados order by idDados desc limit 5;
-
-insert into dados values (null, 'BRJ153989738', 30, 40, null, null, '2022-08-22 01:51:48.131296');
-
-insert into dados values (null, 'BRJ839784635', 30, 50, null, 1600.00, null, '2022-08-22 01:51:48.131296');
-insert into dados values (null, 'BRJ839784635', 40, 90, null, 2600.00, null, '2022-08-22 02:51:48.131296');
-insert into dados values (null, 'BRJ839784635', 35, 100, null, 1600.00, null, '2022-08-22 03:51:48.131296');
-insert into dados values (null, 'BRJ839784635', 70, 40, null, 2600.00, null, '2022-08-22 04:51:48.131296');
-insert into dados values (null, 'BRJ839784635', 80, 30, null, 3600.00, null, '2022-08-22 05:51:48.131296');
-insert into dados values (null, 'BRJ839784635', 90, 10, null, 3600.00, null, '2022-08-22 06:51:48.131296');
 
 
-
-
-SELECT idUsuario, nome, idMaquina FROM usuario
-JOIN maquina ON fkUsuario = idUsuario where usuario = 'lari' and senha = MD5('123');
-
-INSERT INTO maquina VALUES (NULL, 1002, '{sistema}', '{processador}', 1, 2, '{freqCpu}', '{freqMinCpu}', '{memoriaTotal}', '/dev', '{capacidadeDiscoPrincipal}');
-
-INSERT INTO maquina VALUES (NULL, 1002, 'Linux', 'Intel(R) Core(TM) i3-8145U CPU @ 2.10GHz', 4, 2, '3.9Ghz', '4.0Ghz', ' 11.57GB', '/dev/nvme0n1p1', '0.0')
 
 
 

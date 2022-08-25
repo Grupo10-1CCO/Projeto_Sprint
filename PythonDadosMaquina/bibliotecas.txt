@@ -1,7 +1,7 @@
 Bibliotecas que precisam ser instaladas através do pip install para o pleno funcionamento do programa
 
-Python -m pip install py-cpuinfo
-Python -m pip install psutil
-Python -m pip install mysql-connector-python
-Python -m pip install matplot
-Python -m pip install dashing
+python -m pip install py-cpuinfo
+python -m pip install psutil
+python -m pip install mysql-connector-python
+python -m pip install matplot
+python -m pip install dashing

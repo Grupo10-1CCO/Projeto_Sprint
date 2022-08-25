@@ -100,7 +100,7 @@ def monitorar():
 def info():
     os.system(codeCleaner)
     
-    freqCpu = f'{cpu_freq().current}Mhz'
+    freqCpu = f'{round(cpu_freq().max, 0)}Mhz'
     qtdCores = cpu_count()
     qtdThreads = cpu_count(logical=False)
     tempoGasto = f"{round(cpu_times().user / 60 / 60, 2)} Horas"
@@ -142,7 +142,7 @@ def insertPeriodico(serialNumber):
     while True:
             usoAtualMemoria = virtual_memory().percent
             usoCpuPorc = cpu_percent()
-            freqCpu = cpu_freq().current
+            freqCpu = round(cpu_freq().current,0)
 
             particoes = []
             if sistema == "Windows":
@@ -204,7 +204,7 @@ def relatorio():
 
     usoCpuPorc = f'{cpu_percent()}%'
     usoPorCore = cpu_percent(percpu=True)
-    freqCpu = round(cpu_freq().current, 2)
+    freqCpu = round(cpu_freq().current, 0)
     qtdCores = cpu_count()
     qtdThreads = cpu_count(logical=False)
     with open('DadosMaquina.txt','a', encoding='utf-8') as arquivo:
@@ -233,6 +233,4 @@ def relatorio():
 
     print('Sucesso!!\nSeus dados foram salvos em um relatório chamado DadosMaquina.txt\n')
     input("\nPressione Enter para voltar ao menu...\n")
-    return 0 
-
-monitorar()
+    return 0

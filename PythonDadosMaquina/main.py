@@ -20,7 +20,7 @@ def menu(userId, nome, serialNumber):
 
     while opcaoUser == "1":
         os.system(codeCleaner)
-        res = input("\033[1Como você deseja visualizar os dados?\033[0m \n\n[1] - Painel \n[2] - Informações detalhadas \n[3] - Sair\n\n\033[1mUsuário:\033[0m ")
+        res = input("\033[1tComo você deseja visualizar os dados?\033[0m \n\n[1] - Painel \n[2] - Informações detalhadas \n[3] - Sair\n\n\033[1mUsuário:\033[0m ")
 
         if res == "1":
             print("Atenção, você está prestes a entrar no painel. Para sair pressione CTRL + C")
@@ -28,6 +28,8 @@ def menu(userId, nome, serialNumber):
             opcaoUser = dashboard()
         elif res == "2":
             opcaoUser = monitorar()
+        else:
+            opcaoUser = "0"
             
 
     while opcaoUser == "2":

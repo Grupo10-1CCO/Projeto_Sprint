@@ -92,8 +92,8 @@ def cadastroComponentes(idUsuario):
     for j in particoes:
         porcentagemOcupados.append(disk_usage(j).percent)
 
-    freqCpu = f'{round(cpu_freq().max / 1000 , 2)}Ghz'
-    freqMinCpu = f'{cpu_freq().min / 100}Ghz'
+    freqCpu = f'{round(cpu_freq().max, 0)}Mhz'
+    freqMinCpu = f'{cpu_freq().min, 0}Mhz'
     qtdCores = cpu_count()
     qtdThreads = cpu_count(logical=False)
     processador = cpuinfo.get_cpu_info()['brand_raw']
