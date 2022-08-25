@@ -45,7 +45,6 @@ def dashboard():
     )
 
     while True:
-        os.system(codeCleaner)
 
         # Memoria
         usoMemoria = memoriaDisponivel = ui.items[0]
@@ -116,6 +115,8 @@ def dashboard():
 
         for proc in ordenados:
             processos.text += f"\n{proc['name']:<25} {proc['cpu_percent']}"
+
+        os.system(codeCleaner)
 
         try:
             ui.display()

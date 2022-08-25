@@ -19,14 +19,19 @@ def login():
     
     dados = select(query)
 
-    
-    os.system(codeCleaner)
-    print("\033[1mSucesso no Login\033[0m\n\nLogin feito com sucesso\nAbrindo menu inicial...\n")
-    userId = dados[0]
-    nomeUser = dados[1]
-    serialNumber = dados[2]
-    time.sleep(2)
-    return userId, nomeUser, serialNumber
+    if type(dados) == type(None):
+        print('\033[1mFalha no login\033[0m\n\nUsuário ou senha inválidos')
+        time.sleep(2)
+        login()
+
+    else: 
+        os.system(codeCleaner)
+        print("\033[1mSucesso no Login\033[0m\n\nLogin feito com sucesso\nAbrindo menu inicial...\n")
+        userId = dados[0]
+        nomeUser = dados[1]
+        serialNumber = dados[2]
+        time.sleep(2)
+        return userId, nomeUser, serialNumber
 
 
 
@@ -91,7 +96,6 @@ def cadastroComponentes(idUsuario):
     freqMinCpu = f'{cpu_freq().min / 100}Ghz'
     qtdCores = cpu_count()
     qtdThreads = cpu_count(logical=False)
-    tempoGasto = f"{round(cpu_times().user / 60 / 60, 2)} Horas"
     processador = cpuinfo.get_cpu_info()['brand_raw']
     discoPrincipal = particoes[0]
     capacidadeDiscoPrincipal = porcentagemOcupados[0]

@@ -7,7 +7,6 @@ from database import insert, select
 import cpuinfo
 from uuid import getnode as get_mac
 from random import randint
-from datetime import datetime
 
 
 sistema = platform.system()
@@ -45,6 +44,7 @@ def monitorar():
             usoCpuPorc = f'{cpu_percent()}%'
             usoPorCore = cpu_percent(percpu=True)
 
+
             # DISCO
             particoes = []
             if sistema == "Windows":
@@ -60,6 +60,7 @@ def monitorar():
             porcentagemOcupados = [] 
             for j in particoes:
                 porcentagemOcupados.append(disk_usage(j).percent) 
+
 
             # Print parte da memória
             print("\033[1mInformações de memória\033[0m\n")
@@ -141,9 +142,25 @@ def insertPeriodico(serialNumber):
     while True:
             usoAtualMemoria = virtual_memory().percent
             usoCpuPorc = cpu_percent()
-            freqCpu = round(cpu_freq().current, 2)
-            disco = disk_partitions()[0][0]
-            usoDisco = disk_usage(disco).percent
+            freqCpu = cpu_freq().current
+
+            particoes = []
+            if sistema == "Windows":
+                for part in disk_partitions(all=False): # identificando partições
+                    if part[0] == "F:\\":
+                        break
+                    else:
+                        particoes.append(part[0])
+            elif sistema == "Linux":
+                particoes.append("/")
+
+
+            porcentagemOcupados = [] 
+            for j in particoes:
+                porcentagemOcupados.append(disk_usage(j).percent) 
+
+            usoDisco = porcentagemOcupados[0]
+
             dataHora = datetime.datetime.now()
             
             query = f"INSERT INTO dados VALUES(NULL, '{serialNumber}', {usoAtualMemoria}, {usoCpuPorc}, NULL, {freqCpu}, {usoDisco}, '{dataHora}');"
@@ -157,7 +174,7 @@ def insertPeriodico(serialNumber):
 def relatorio():
     os.system(codeCleaner)
 
-    hora = datetime.now()
+    hora = datetime.datetime.now()
     with open('DadosMaquina.txt','w', encoding='utf-8') as arquivo:
         arquivo.write("Data e hora do momento que foi salvo os dados:\n" + str(hora))
 
@@ -217,3 +234,5 @@ def relatorio():
     print('Sucesso!!\nSeus dados foram salvos em um relatório chamado DadosMaquina.txt\n')
     input("\nPressione Enter para voltar ao menu...\n")
     return 0 
+
+monitorar()

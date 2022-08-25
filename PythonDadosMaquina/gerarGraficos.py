@@ -1,11 +1,11 @@
+import time
 import matplotlib.pyplot as plt
 import psutil
 import os
 import datetime
 from database import select
 from functions import conversao_bytes
-from functions import codeCleaner;
-from tkinter.font import BOLD
+from functions import codeCleaner
 
 if os.name == 'nt':
     sistem="C:\\"
@@ -33,7 +33,7 @@ def gerarGraficoDisco():
 
     os.system(codeCleaner)
     figura = plt.figure(figsize=(10,3))
-    plt.pie(vt_dados_disco, autopct='%.1f%%', colors=color, explode=myexplode, textprops={'fontsize': 14, 'weight':BOLD })
+    plt.pie(vt_dados_disco, autopct='%.1f%%', colors=color, explode=myexplode, textprops={'fontsize': 14})
     plt.legend(title='Dados', labels=label, loc='center right', bbox_to_anchor=(1.5, 0.6))
     plt.title ('Diagnostico do disco')
     plt.show()
@@ -79,6 +79,7 @@ def gerarGraficoCpu2(userId):
     plt.plot(dataHoraRegis, freqCpu)
     plt.title ('Frequência da CPU (Mhz)')
     plt.show()
+    time.sleep(3)
 
 def gerarGraficoMemoria(userId):
     query = f'select usoMemoria, dataHoraRegistro from dados, Usuario where idUsuario = {userId} order by idDados desc limit 8;'
