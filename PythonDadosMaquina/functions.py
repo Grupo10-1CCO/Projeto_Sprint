@@ -51,6 +51,8 @@ def monitorar():
                 for part in disk_partitions(all=False): # identificando partições
                     if part[0] == "F:\\":
                         break
+                    elif part[0] == "E:\\":
+                        break
                     else:
                         particoes.append(part[0])
             elif sistema == "Linux":
@@ -149,6 +151,8 @@ def insertPeriodico(serialNumber):
                 for part in disk_partitions(all=False): # identificando partições
                     if part[0] == "F:\\":
                         break
+                    elif part[0] == "E:\\":
+                        break
                     else:
                         particoes.append(part[0])
             elif sistema == "Linux":
@@ -231,6 +235,6 @@ def relatorio():
         arquivo.write("\n━━━━━ Disco ━━━━━\n\nPartições: {} \nPorcentagem ocupada de cada partição: {}\n".format(particoes, porcentagemOcupados))
 
 
-    print('Sucesso!!\nSeus dados foram salvos em um relatório chamado DadosMaquina.txt\n')
+    print('Sucesso!!\n\nSeus dados foram salvos em um relatório chamado DadosMaquina.txt\n')
     input("\nPressione Enter para voltar ao menu...\n")
     return 0

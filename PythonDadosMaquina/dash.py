@@ -81,6 +81,8 @@ def dashboard():
             for part in disk_partitions(all=False): # identificando partições
                 if part[0] == "F:\\":
                     break
+                elif part[0] == "E:\\":
+                    break
                 else:
                     particoes.append(part[0])
         elif sistema == "Linux":
