@@ -1,3 +1,7 @@
+from __future__ import print_function
+from ast import AsyncFunctionDef
+import enum
+from re import I
 import time
 from dashing import *
 from psutil import *
@@ -107,15 +111,14 @@ def dashboard():
             if infoProc['cpu_percent'] > 0:
                 listaProcessos.append(infoProc)
 
-        ordenados = sorted(
-            listaProcessos,
-            key=lambda p: p['cpu_percent'],
-            reverse=True
-            )[:10]
+        def func(e):
+            return e['cpu_percent']
+
+        listaProcessos.sort(key=func, reverse=True)
 
         processos.text = f"{'Nome':<25}CPU"
 
-        for proc in ordenados:
+        for proc in listaProcessos[:10]:
             processos.text += f"\n{proc['name']:<25} {proc['cpu_percent']}"
 
         os.system(codeCleaner)
