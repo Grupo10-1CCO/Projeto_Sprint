@@ -1,0 +1,31 @@
+Data e hora do momento que foi salvo os dados:
+2022-09-05 16:13:03.110620
+
+━━━━━ Informações do computador ━━━━━
+
+Sistema operacional: Windows
+Versão do sistema: 10.0.19044
+Mac Address: D0:94:66:D1:E2:05
+Arquiterura: 64 bits
+Processador: Intel(R) Core(TM) i3-1005G1 CPU @ 1.20GHz
+Tempo gasto do computador desde a última vez em que foi ligado: 0.86 Horas
+
+━━━━━ MEMÓRIA RAM ━━━━━
+
+Memória total:  7.77GB 
+Memória disponivel:  1.75GB 
+Uso atual:  6.02GB 
+Porcentagem de uso: 77.5%
+
+━━━━━ CPU ━━━━━
+
+Uso total: 32.9%
+Frequência da CPU: 1190.0Mhz
+Quantidade de núcleos: 4
+Quantidade de Threads: 2
+Uso por core: [22.5, 15.1, 10.7, 10.4]
+
+━━━━━ Disco ━━━━━
+
+Partições: ['C:\\', 'D:\\'] 
+Porcentagem ocupada de cada partição: [50.7, 3.2]

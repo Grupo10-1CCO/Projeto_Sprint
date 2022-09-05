@@ -102,6 +102,6 @@ def gerarGraficoMemoria(userId):
 
     figura = plt.figure(figsize=(15,7))
     facecolor='blue'
-    plt.plot(dataHoraRegis, usoMemoria)
+    plt.plot(dataHoraFormatado, usoMemoria)
     plt.title ('Uso da Memória RAM (%)')
     plt.show()

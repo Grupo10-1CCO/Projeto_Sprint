@@ -127,4 +127,4 @@ def dashboard():
             ui.display()
             time.sleep(1)
         except KeyboardInterrupt:
-            return 0
+            return "0"
