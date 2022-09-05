@@ -1,5 +1,5 @@
-CREATE USER 'dataUser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'urubu100';
-GRANT ALL PRIVILEGES ON dadosMaquina.* TO 'dataUser'@'localhost';
+CREATE USER 'sampUser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'samp';
+GRANT ALL PRIVILEGES ON dadosMaquina.* TO 'sampUser'@'localhost';
 
 create database dadosMaquina;
 use dadosMaquina;

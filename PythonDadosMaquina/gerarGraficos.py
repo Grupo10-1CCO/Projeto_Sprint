@@ -32,7 +32,7 @@ def gerarGraficoDisco():
     myexplode = [0.1, 0]
 
     os.system(codeCleaner)
-    figura = plt.figure(figsize=(10,3))
+    figura = plt.figure(figsize=(15,7))
     plt.pie(vt_dados_disco, autopct='%.1f%%', colors=color, explode=myexplode, textprops={'fontsize': 14})
     plt.legend(title='Dados', labels=label, loc='center right', bbox_to_anchor=(1.5, 0.6))
     plt.title ('Diagnostico do disco')
@@ -55,7 +55,7 @@ def gerarGraficoCpu(userId):
     
     dataHoraFormatado = dataHoraRegis[::-1]
 
-    figura = plt.figure(figsize=(10,3))
+    figura = plt.figure(figsize=(15,7))
     facecolor='blue'
     plt.plot(dataHoraFormatado, usoCpuPorc)
     plt.title ('Uso da CPU (%)')
@@ -78,7 +78,7 @@ def gerarGraficoCpu2(userId):
 
     dataHoraFormatado = dataHoraRegis[::-1]
 
-    figura = plt.figure(figsize=(10,3))
+    figura = plt.figure(figsize=(15,7))
     facecolor='blue'
     plt.plot(dataHoraFormatado, freqCpu)
     plt.title ('Frequência da CPU (Mhz)')
