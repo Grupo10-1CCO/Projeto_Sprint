@@ -52,7 +52,7 @@ def cadastro():
             print('\033[1mCadastro\033[0m\n\nCadastro realizado com sucesso!')
             time.sleep(2)
             os.system(codeCleaner)
-            print("Para prosseguir é necessário que recolhamos algumas informações sobre sua máquina... \n\n Aguarde alguns instantes enquanto esse processo é realizado\n\n")
+            print("Para prosseguir é necessário que recolhamos algumas informações sobre sua máquina... \n\n Aguarde alguns instantes enquanto esse processo é realizado.\n\n")
             queryId = f"SELECT idUsuario FROM Usuario where nome = '{nome}' and senha = MD5('{senha}');"
             dados = select(queryId)
             idUsuario = dados[0]
@@ -64,12 +64,12 @@ def cadastro():
                 cadastro()
 
         else:
-            print('Username já é utlizado!')
+            print('Username já é utilizado!')
             time.sleep(2)
             cadastro()
 
     else:
-        print("As senhas não coincidem")
+        print("As senhas não coincidem.")
         time.sleep(1)
         cadastro()
 
@@ -119,7 +119,7 @@ def cadastroComponentes(idUsuario):
     retorno = insert(query)
 
     if retorno == 1:
-        print("Cadastro dos componetes realizado com sucesso, seu cadastro está completo")
+        print("Cadastro dos componentes realizado com sucesso, seu cadastro está completo.")
         time.sleep(2)
         return True
     else:

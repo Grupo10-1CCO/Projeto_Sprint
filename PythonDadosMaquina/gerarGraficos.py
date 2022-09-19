@@ -35,7 +35,7 @@ def gerarGraficoDisco():
     figura = plt.figure(figsize=(15,7))
     plt.pie(vt_dados_disco, autopct='%.1f%%', colors=color, explode=myexplode, textprops={'fontsize': 14})
     plt.legend(title='Dados', labels=label, loc='center right', bbox_to_anchor=(1.5, 0.6))
-    plt.title ('Diagnostico do disco')
+    plt.title ('Diagnóstico do disco')
     plt.show()
 
 def gerarGraficoCpu(userId):

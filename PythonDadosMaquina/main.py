@@ -15,7 +15,7 @@ def menu(userId, nome, serialNumber):
 
     os.system(codeCleaner)
 
-    opcaoUser = input(f"\033[1mHardware Monitor\033[0m\n\n Bem vindo(a) {nome}!!\n\n[1] - Monitorar processos atuais da máquina \n[2] - Verificar Informações sobre o dispositivo\n[3] - Análise de dados\n[4] - Documentar meus dados\n[5] - Sair\n\n\033[1mUsuário:\033[0m ")
+    opcaoUser = input(f"\033[1mHardware Monitor\033[0m\n\n Bem vindo(a) {nome}!!\n\n[1] - Monitorar processos atuais da máquina \n[2] - Verificar informações sobre o dispositivo\n[3] - Análise de dados\n[4] - Documentar meus dados\n[5] - Sair\n\n\033[1mUsuário:\033[0m ")
 
 
     while opcaoUser == "1":
@@ -94,11 +94,11 @@ def main():
         cadastro()
         main()
     elif opcao1tela == "3":
-        print("Obrigado por utilizar nosso serviços")
+        print("Obrigado por utilizar nosso serviço!")
         time.sleep(1)
         exit()
     else: 
-        print("Opção Inválida")
+        print("Opção inválida.")
         main()
 
     
