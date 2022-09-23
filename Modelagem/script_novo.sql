@@ -8,7 +8,7 @@ CREATE TABLE empresa (
     nome VARCHAR(100),
     email VARCHAR(100),
     cnpj CHAR(14)
-) AUTO_INCREMENT = 101;
+) AUTO_INCREMENT = 1;
 
 CREATE TABLE usuario (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -18,22 +18,25 @@ CREATE TABLE usuario (
     senha VARCHAR(100),
     cargo VARCHAR(100),
     FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa)
-) AUTO_INCREMENT = 1001;
+) AUTO_INCREMENT = 1;
 
 CREATE TABLE maquina (
     idMaquina CHAR(12) PRIMARY KEY,
     fkEmpresa INT,
     nome VARCHAR(45),
-    FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa)
+    fkMemoria INT,
+    fkProcessador INT,
+    fkDisco INT,
+    FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa),
+    FOREIGN KEY (fkMemoria) REFERENCES memoria(idMemoria),
+    FOREIGN KEY (fkProcessador) REFERENCES processador(idProcessador),
+    FOREIGN KEY (fkDisco) REFERENCES disco(idDisco)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE memoria (
     idMemoria INT PRIMARY KEY AUTO_INCREMENT,
-    fkMaquina CHAR(12),
-    qtdMemoria VARCHAR(45),
-    frequenciaMemoria VARCHAR(45),
-    FOREIGN KEY (fkMaquina) REFERENCES maquina(idMaquina)
-) AUTO_INCREMENT = 101;
+    qtdMemoria DOUBLE
+) AUTO_INCREMENT = 1;
 
 CREATE TABLE registroMemoria (
     idRegistroMemoria INT PRIMARY KEY AUTO_INCREMENT,
@@ -45,13 +48,11 @@ CREATE TABLE registroMemoria (
 
 CREATE TABLE processador (
     idProcessador INT PRIMARY KEY AUTO_INCREMENT,
-    fkMaquina CHAR(12),
     modelo VARCHAR(45),
     qtdNucleosFisicos INT,
     qtdNucleosLogicos INT,
-    frequenciaMaxima DOUBLE,
-    FOREIGN KEY (fkMaquina) REFERENCES maquina(idMaquina)
-) AUTO_INCREMENT = 101;
+    frequenciaMaxima DOUBLE
+) AUTO_INCREMENT = 1;
 
 CREATE TABLE registroProcessador (
     idRegistroProcessador INT PRIMARY KEY AUTO_INCREMENT,
@@ -64,10 +65,8 @@ CREATE TABLE registroProcessador (
 
 CREATE TABLE disco (
     idDisco INT PRIMARY KEY AUTO_INCREMENT,
-    fkMaquina CHAR(12),
-    capacidade VARCHAR(45),
-    FOREIGN KEY (fkMaquina) REFERENCES maquina(idMaquina)
-) AUTO_INCREMENT = 101;
+    capacidade DOUBLE
+) AUTO_INCREMENT = 1;
 
 CREATE TABLE registroDisco (
     idRegistroDisco INT PRIMARY KEY AUTO_INCREMENT,
