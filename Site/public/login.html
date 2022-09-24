@@ -157,14 +157,31 @@
     function cadastrar() {
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
-        var nomeVar = nome_input.value;
-        var emailVar = email_cad_input.value;
-        var senhaVar = senha_cad_input.value;
-        var cnpjVar = cnpj_input.value;
-        var confirmacaoSenhaVar = conf_senha_input.value;
+        // var nome = nome_input.value;
+        // var email = email_cad_input.value;
+        // var senha = senha_cad_input.value;
+        // var confirmacaoSenha = conf_senha_input.value;
+        // var cargo = cargo_cad_input.value;
+        // var fkEmpresa = fkEmpresa_cad_input.value;
+        // // usuario ^^^
+        // // Empresa VVV
+        // var nomeEmpresa = nomeEmpresa_input.value;
+        // var emailEmpresa = emailEmpresa_input.value;
+        // var cnpj = cnpj_input.value;
+       
+        var nome = "Filipe";
+        var email = "Filipe@email.com";
+        var senha = 1234;
+        var confirmacaoSenha = 1234;
+        var fkEmpresa = 1;
+        // usuario ^^^
+        // Empresa VVV
+        var nomeEmpresa = "Itau";
+        var emailEmpresa = "Itau@itaudominio.com";
+        var cnpj = "11111111111111";
 
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+        if (nome == "" || email == "" || senha == "" || confirmacaoSenha == "") {
             mensagem_erro.classList.add("alerta")
             mensagem_erro.style.display = "flex";
             mensagem_erro.innerHTML = "Por favor não deixe nenhum campo em branco";
@@ -176,7 +193,7 @@
 
             return false;
         }
-        else if (confirmacaoSenhaVar != senhaVar) {
+        else if (confirmacaoSenha != senha) {
             mensagem_erro.classList.add("erro")
             mensagem_erro.style.display = "flex";
             mensagem_erro.innerHTML = "Senhas não coincidem";
@@ -198,10 +215,15 @@
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar,
-                cnpjServer: cnpjVar
+                nomeServer: nome,
+                emailServer: email,
+                senhaServer: senha,
+                fkEmpresaServer: fkEmpresa,
+                // Empresa VVV
+                nomeEmpresaServer: nomeEmpresa,
+                emailEmpresaServer: emailEmpresa,
+                cnpjServer: cnpj
+                
             })
         }).then(function (resposta) {
 

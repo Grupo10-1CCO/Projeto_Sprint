@@ -1,14 +1,15 @@
-CREATE DATABASE dadosMaquina;
-USE dadosMaquina;
+CREATE DATABASE projetoSamp;
+USE projetoSamp;
 
-DROP DATABASE dadosMaquina;
+
 
 CREATE TABLE empresa (
     idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100),
-    email VARCHAR(100),
+    nomeEmpresa VARCHAR(100),
+    emailEmpresa VARCHAR(100),
     cnpj CHAR(14)
 ) AUTO_INCREMENT = 1;
+
 
 CREATE TABLE usuario (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -20,23 +21,13 @@ CREATE TABLE usuario (
     FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa)
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE maquina (
-    idMaquina CHAR(12) PRIMARY KEY,
-    fkEmpresa INT,
-    nome VARCHAR(45),
-    fkMemoria INT,
-    fkProcessador INT,
-    fkDisco INT,
-    FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa),
-    FOREIGN KEY (fkMemoria) REFERENCES memoria(idMemoria),
-    FOREIGN KEY (fkProcessador) REFERENCES processador(idProcessador),
-    FOREIGN KEY (fkDisco) REFERENCES disco(idDisco)
-) AUTO_INCREMENT = 1;
-
 CREATE TABLE memoria (
     idMemoria INT PRIMARY KEY AUTO_INCREMENT,
     qtdMemoria DOUBLE
 ) AUTO_INCREMENT = 1;
+
+
+
 
 CREATE TABLE registroMemoria (
     idRegistroMemoria INT PRIMARY KEY AUTO_INCREMENT,
@@ -76,12 +67,19 @@ CREATE TABLE registroDisco (
     FOREIGN KEY (fkDisco) REFERENCES disco(idDisco)
 ) AUTO_INCREMENT = 1;
 
-SELECT * FROM empresa;
-SELECT * FROM usuario;
-SELECT * FROM maquina;
-SELECT * FROM memoria;
-SELECT * FROM registroMemoria;
-SELECT * FROM processador;
-SELECT * FROM registroProcessador;
-SELECT * FROM disco;
-SELECT * FROM registroDisco;
+CREATE TABLE maquina (
+    idMaquina CHAR(12) PRIMARY KEY,
+    fkEmpresa INT,
+    nome VARCHAR(45),
+    fkMemoria INT,
+    fkProcessador INT,
+    fkDisco INT,
+    FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa),
+    FOREIGN KEY (fkMemoria) REFERENCES memoria(idMemoria),
+    FOREIGN KEY (fkProcessador) REFERENCES processador(idProcessador),
+    FOREIGN KEY (fkDisco) REFERENCES disco(idDisco)
+) AUTO_INCREMENT = 1;
+
+insert into empresa values(null, 'C6', 'c6@email.com.br','22222222222222');
+select * from empresa;
+select * from usuario;
